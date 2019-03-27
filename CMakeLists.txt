@@ -10,6 +10,7 @@ project(control_talon)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   std_msgs
+  dynamixel_workbench_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -148,6 +149,14 @@ include_directories(
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
+
+add_executable(keyboard_control src/keyboard_control.cpp)
+add_dependencies(keyboard_control ${catkin_EXPORTED_TARGETS})
+target_link_libraries(keyboard_control ${catkin_LIBRARIES})
+
+add_executable(joy_ctrl src/joyStick_ctrl.cpp)
+add_dependencies(joy_ctrl ${catkin_EXPORTED_TARGETS})
+target_link_libraries(joy_ctrl ${catkin_LIBRARIES})
 
 #############
 ## Install ##
